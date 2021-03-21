@@ -1,0 +1,92 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "description": "This is the API documentation for the ignite challenge",
+    "version": "1.0.0",
+    "contact": {
+      "email": "frempyrean@gmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a new user",
+        "description": "Creates a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Any name",
+                  "email": "any_mail@mail.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully"
+          },
+          "400": {
+            "description": "User already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["User"],
+        "summary": "List all users",
+        "description": "Returns a list of all the users registered",
+        "responses": {
+          "200": {
+            "description": "Users fetched successfully"
+          },
+          "400": {
+            "description": "Users could not be found or unauthorized"
+          }
+        }
+      }
+    },
+    "users/{user_id}": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Find an user by id",
+        "description": "Finds an user by id",
+        "responses": {
+          "200": {
+            "description": "User fetched successfully"
+          },
+          "404": {
+            "description": "User could not be found"
+          }
+        }
+      }
+    },
+    "users/{user_id}/admin": {
+      "patch": {
+        "tags": ["User"],
+        "summary": "Grants admin role to user",
+        "description": "Turns a regular user into an admin",
+        "responses": {
+          "200": {
+            "description": "User updated successfully"
+          },
+          "404": {
+            "description": "User could not be found"
+          }
+        }
+      }
+    }
+  }
+}
